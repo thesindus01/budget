@@ -1,0 +1,1 @@
+-- paste indexes SQL from chat here
