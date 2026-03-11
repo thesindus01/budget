@@ -114,7 +114,9 @@ export default function AddBillForm({
               name="recurring_type"
               className="w-full rounded-xl border p-3"
               value={recurringType}
-              onChange={(e) => setRecurringType(e.target.value)}
+              onChange={(e) =>
+				setRecurringType(e.target.value as 'monthly' | 'one_time')
+				}
             >
               <option value="monthly">Recurring Monthly</option>
               <option value="one_time">One Time</option>
