@@ -133,9 +133,7 @@ export default function EditBillForm({
             <select
               name="recurring_type"
               value={recurringType}
-              onChange={(e) =>
-				setRecurringType(e.target.value as 'monthly' | 'one_time')
-				}
+              onChange={(e) => setRecurringType(e.target.value as 'monthly' | 'one_time')}
               className="w-full rounded-xl border p-3"
             >
               <option value="monthly">Recurring Monthly</option>
