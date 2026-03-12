@@ -113,8 +113,13 @@ export default async function CalendarPage({
   const now = new Date()
   const selectedMonth = Number(params.month ?? now.getMonth() + 1)
   const selectedYear = Number(params.year ?? now.getFullYear())
-  const selectedDay = params.day ? Number(params.day) : null
   const monthIndex = selectedMonth - 1
+  const selectedDay =
+   params.day
+    ? Number(params.day)
+    : selectedYear === now.getFullYear() && monthIndex === now.getMonth()
+    ? now.getDate()
+    : null
   const paymentMonth = buildPaymentMonthDate(selectedYear, monthIndex)
 
   const supabase = await createClient()
@@ -281,9 +286,11 @@ export default async function CalendarPage({
                 <Link
                   key={`day-${day}`}
                   href={`/calendar?month=${selectedMonth}&year=${selectedYear}&day=${day}#calendar-grid`}
-                  className={`min-h-28 rounded-2xl border p-2 ${
-                    isSelected ? 'bg-slate-200 ring-2 ring-slate-500' : 'bg-slate-50'
-                  }`}
+                  className={`min-h-28 rounded-2xl border p-2 transition ${
+					isSelected
+						? 'bg-blue-100 ring-2 ring-blue-600 border-blue-500 shadow-md'
+						: 'bg-slate-50 hover:bg-slate-100'
+					}`}
                 >
                   <div className="flex items-center justify-between">
                     <div className="font-semibold">{day}</div>
